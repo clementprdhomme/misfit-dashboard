@@ -1,0 +1,15 @@
+block variables
+  -var title = 'Misfit Health'
+
+doctype html
+html(lang='en')
+  head
+    title= title
+    block scripts
+      script(data-main='js/app', src='lib/requirejs/require.js')
+    block stylesheets
+      link(rel='stylesheet', type='text/css', href='css/styles.css')
+  body
+    block header
+    block content
+    block footer

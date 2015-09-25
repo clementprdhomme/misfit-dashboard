@@ -1,0 +1,29 @@
+{
+  "name": "misfit-dashboard",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clementprdhomme/misfit-dashboard.git"
+  },
+  "author": "Clément Prod'homme",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/clementprdhomme/misfit-dashboard/issues"
+  },
+  "homepage": "https://github.com/clementprdhomme/misfit-dashboard#readme",
+  "devDependencies": {
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-autoprefixer": "^3.0.2",
+    "gulp-jade": "^1.1.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-sass": "^2.0.4",
+    "gulp-webserver": "^0.9.1"
+  }
+}

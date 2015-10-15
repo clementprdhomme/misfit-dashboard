@@ -79,17 +79,6 @@ require([
         this.router.navigate('login', { trigger: true });
         return;
       }
-
-      $.ajax({
-        url: "https://my.misfit.com/api/profile",
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader ('Cookie', 'sails.sid=s%3ArCXts4CHp_mSqdu7-oaHBY8GFSeHZyfg.ngs20aTf3y7U47Hwy4oZbeF27%2F%2BsDZiLMc5ArILa7Xo;SSO_LOGGED_IN=true;')
-        },
-      }).done(function() {
-        console.log(arguments);
-      }).fail(function() {
-        console.log(arguments);
-      })
     },
     
     routeSwim: function() {

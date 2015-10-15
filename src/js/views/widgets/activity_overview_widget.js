@@ -1,23 +1,15 @@
-define([
-  'backbone',
-  'handlebars',
-  'text!templates/activity_overview_widget.handlebars'
-], function(Backbone, Handlebars, TPL) {
+import Backbone from 'backbone';
+import Handlebars from 'handlebars';
+import TPL from 'text!templates/activity_overview_widget.handlebars';
 
-  var ActivityOverviewWidget = Backbone.View.extend({
+export default class ActivityOverviewWidget extends Backbone.View {
 
-    template: Handlebars.compile(TPL),
+  get template() { return Handlebars.compile(TPL); }
 
-    initialize: function() {
+  initialize() {}
 
-    },
+  render() {
+    this.$el.html(this.template());
+  }
 
-    render: function() {
-      this.$el.html(this.template());
-    }
-
-  });
-
-  return ActivityOverviewWidget;
-
-});
+}

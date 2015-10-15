@@ -1,10 +1,9 @@
-define([
-  'backbone'
-], function(Backbone) {
+import Backbone from 'backbone';
+
+export default class Router extends Backbone.Router {
   
-  var Router = Backbone.Router.extend({
-    
-    routes: {
+  get routes() {
+    return {
       '(/)':                 'home',
       'login':               'login',
       'access_token=*token': 'token',
@@ -12,11 +11,8 @@ define([
       'swim':                'swim',
       'sleep':               'sleep',
       'about':               'about',
-      'privacy':            'privacy'
-    }
-    
-  });
+      'privacy':             'privacy'
+    };
+  }
   
-  return Router;
-  
-});
+}

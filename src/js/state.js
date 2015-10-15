@@ -1,11 +1,3 @@
-define([
-  'backbone'
-], function(Backbone) {
-  
-  var State = Backbone.Model.extend({
-    
-  });
-  
-  return new State();
-  
-});
+import Backbone from 'backbone';
+
+export default class State extends Backbone.Model {}

@@ -7,6 +7,7 @@ var minifyCSS = require('gulp-minify-css');
 var jade = require('gulp-jade');
 var minifyHTML = require('gulp-minify-html'); 
 var webserver = require('gulp-webserver');
+var babel = require('gulp-babel');
 
 var PATH = {
   src: 'src/',
@@ -44,9 +45,17 @@ gulp.task('html', function() {
     .pipe(gulp.dest(PATH.dst));
 });
 
-gulp.task('copy', function() {
-  gulp.src(PATH.src + 'js/**/*')
+gulp.task('js', function() {
+  gulp.src(PATH.src + 'js/**/*.js')
+    .pipe(babel({
+      modules: 'amd'
+    }))
     .pipe(gulp.dest(PATH.dst + 'js'));
+});
+
+gulp.task('copy', function() {
+  gulp.src(PATH.src + 'js/templates/*')
+    .pipe(gulp.dest(PATH.dst + 'js/templates'));
 });
 
 gulp.task('server', function() {
@@ -57,9 +66,10 @@ gulp.task('server', function() {
  
 
 gulp.task('default', ['clean'], function() {
-  gulp.start(['copy', 'css', 'html', 'server'], function() {
+  gulp.start(['js', 'copy', 'css', 'html', 'server'], function() {
     gulp.watch(PATH.src + 'styles/**/*.scss', ['css']);
     gulp.watch(PATH.src + '*.jade', ['html']);
-    gulp.watch(PATH.src + 'js/**/*', ['copy']);
+    gulp.watch(PATH.src + 'js/**/*', ['js']);
+    gulp.watch(PATH.src + 'js/templates/*', ['copy']);
   });
 });

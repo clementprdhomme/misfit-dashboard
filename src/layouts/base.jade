@@ -7,6 +7,17 @@ html(lang='en')
     title= title
     block scripts
       script(data-main='js/app', src='lib/requirejs/require.js')
+      script.
+        require.config({
+          baseUrl: 'js',
+          paths: {
+            jquery: '../lib/jquery/dist/jquery.min',
+            underscore: '../lib/underscore/underscore-min',
+            backbone: '../lib/backbone/backbone-min',
+            handlebars: '../lib/handlebars/handlebars.min',
+            text: '../lib/text/text'
+          }
+        });
     block stylesheets
       link(rel='stylesheet', type='text/css', href='css/styles.css')
   body

@@ -1,0 +1,51 @@
+/* Grid based on Lemonade: http://lemonade.im */
+
+$full: 100%;
+$small: 540px;
+$medium: 780px;
+$cell-padding: 10px;
+$start: 1;
+$end: 12;
+$row-width: 1000px;
+
+.row {
+  margin: 0 auto;
+  max-width: $row-width;
+
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// Attribute selector
+[class*='cell-'] {
+  float: left;
+  padding: $cell-padding;
+}
+
+// Mobile
+@for $i from $start through $end {
+  .cell-sm-#{$i} {
+    width: $full / $i;
+  }
+}
+
+// Portrait Tablet
+@media (min-width: $small) {
+  @for $i from $start through $end {
+    .cell-md-#{$i} {
+      width: $full / $i;
+    }
+  }
+}
+
+// Landscape Tablet
+@media (min-width: $medium) {
+  @for $i from $start through $end {
+    .cell-lg-#{$i} {
+      width: $full / $i;
+    }
+  }
+}

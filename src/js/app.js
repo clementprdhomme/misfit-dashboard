@@ -14,13 +14,17 @@ require([
   'backbone',
   'router',
   'config',
-  'state'
-], function(Backbone, Router, Config, State) {
+  'state',
+  'views/header',
+  'views/widget_overview'
+], function(Backbone, Router, Config, State, HeaderView, WidgetOverviewView) {
   
   var App = Backbone.View.extend({
     
     initialize: function() {
       this.router = new Router();
+      this.header = new HeaderView({ el: '.header' });
+      this.widgetOverview = new WidgetOverviewView({ el: '.js-widget-overview'});
       this.setListeners();
       Backbone.history.start();
     },
@@ -33,6 +37,9 @@ require([
       this.router.on('route:swim', this.routeSwim, this);
       this.router.on('route:sleep', this.routeSleep, this);
       this.router.on('route:about', this.routeAbout, this);
+
+      this.header.listenTo(this.router, 'route', this.header.update);
+      this.widgetOverview.listenTo(this.router, 'route', this.widgetOverview.update);
     },
     
     routeHome: function() {
@@ -70,18 +77,32 @@ require([
     routeActivity: function() {
       if(!this.isLogged) {
         this.router.navigate('login', { trigger: true });
+        return;
       }
+
+      $.ajax({
+        url: "https://my.misfit.com/api/profile",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader ('Cookie', 'sails.sid=s%3ArCXts4CHp_mSqdu7-oaHBY8GFSeHZyfg.ngs20aTf3y7U47Hwy4oZbeF27%2F%2BsDZiLMc5ArILa7Xo;SSO_LOGGED_IN=true;')
+        },
+      }).done(function() {
+        console.log(arguments);
+      }).fail(function() {
+        console.log(arguments);
+      })
     },
     
     routeSwim: function() {
       if(!this.isLogged) {
         this.router.navigate('login', { trigger: true });
+        return;
       }
     },
     
     routeSleep: function() {
       if(!this.isLogged) {
         this.router.navigate('login', { trigger: true });
+        return;
       }
     },
     

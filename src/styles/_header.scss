@@ -1,0 +1,53 @@
+.header {
+
+}
+
+.header__menu {
+  padding: 10px 0;
+  transition: color 0.5s, background-color 0.5s;
+
+  ul {
+    margin: 0 auto;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+  }
+
+  li {
+    display: inline-block;
+    padding: 0 20px;
+    margin: 0 10px;
+    line-height: 30px;
+    border-radius: 40px;
+    transition: background-color 0.5s;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@each $item, $color in $category-colors {
+  .header__menu--#{$item} {
+    position: relative;
+    background-color: $color;
+    color: lighten($color, 40%);
+
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to bottom, darken($color, 10%), $color);
+    }
+
+    .header__menu-#{$item} {
+      color: lighten($color, 60%);
+      background-color: darken($color, 10%);
+    }
+  }
+}

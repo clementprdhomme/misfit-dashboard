@@ -2,6 +2,7 @@ var del = require('del');
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var pxtorem = require('gulp-pxtorem');
 var minifyCSS = require('gulp-minify-css'); 
 var jade = require('gulp-jade');
 var minifyHTML = require('gulp-minify-html'); 
@@ -27,6 +28,10 @@ gulp.task('css', function() {
     .pipe(autoprefixer({
         browsers: ['last 2 versions'],
         cascade: false
+    }))
+    .pipe(pxtorem({
+      prop_white_list: [],
+      media_query: true
     }))
     .pipe(minifyCSS({compatibility: 'ie8'}))
     .pipe(gulp.dest(PATH.dst + 'css'));
